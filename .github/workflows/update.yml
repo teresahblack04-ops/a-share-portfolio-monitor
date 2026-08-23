@@ -34,11 +34,17 @@ jobs:
       - name: Fetch data and calculate indicators
         run: python src/market_monitor.py
 
+      - name: Build automatic risk dashboard
+        run: python src/risk_dashboard.py
+
+      - name: Fetch public quarterly fundamental proxies
+        run: python src/fundamental_monitor.py
+
       - name: Commit updated report
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ohlcv.csv output/technical_report.csv output/technical_report.md
+          git add data/ohlcv.csv output/technical_report.csv output/technical_report.md output/risk_dashboard.csv output/risk_dashboard.md output/fundamental_report.csv output/fundamental_report.md
           if git diff --cached --quiet; then
             echo "No market-data changes to commit."
           else

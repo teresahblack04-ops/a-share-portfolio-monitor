@@ -260,7 +260,12 @@ def add_indicators(frame: pd.DataFrame) -> pd.DataFrame:
     delta = close.diff()
     gain = delta.clip(lower=0).ewm(alpha=1 / 14, adjust=False).mean()
     loss = (-delta.clip(upper=0)).ewm(alpha=1 / 14, adjust=False).mean()
-    frame["rsi14"] = 100 - (100 / (1 + gain / loss.replace(0, np.nan)))
+    rs = gain / loss.replace(0, np.nan)
+    frame["rsi14"] = 100 - (100 / (1 + rs))
+    # A continuous rising series has zero average loss and should read as
+    # RSI=100, not as a missing value. A flat series is neutral at 50.
+    frame.loc[(loss == 0) & (gain > 0), "rsi14"] = 100
+    frame.loc[(loss == 0) & (gain == 0), "rsi14"] = 50
 
     previous_close = close.shift(1)
     true_range = pd.concat(
@@ -395,6 +400,8 @@ def run() -> None:
     for code, group in combined.groupby("code", sort=False):
         calculated.append(add_indicators(group))
     indicators = pd.concat(calculated, ignore_index=True)
+    active_codes = set(watchlist["code"].astype(str).str.zfill(6))
+    indicators = indicators[indicators["code"].isin(active_codes)].copy()
     latest = indicators.sort_values("date").groupby("code", as_index=False).tail(1).copy()
     latest["nav_date"] = None
     latest["nav"] = np.nan
