@@ -5,8 +5,8 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    # 16:45 China Standard Time, Monday to Friday.
-    - cron: "45 8 * * 1-5"
+    # 09:00 China Standard Time (01:00 UTC), Monday to Friday.
+    - cron: "0 1 * * 1-5"
 
 permissions:
   contents: write
