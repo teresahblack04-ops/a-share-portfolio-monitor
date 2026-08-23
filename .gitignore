@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.DS_Store
+
+# Local-only files. Do not commit personal holdings, costs or account balances.
+config/private_portfolio.csv
+
