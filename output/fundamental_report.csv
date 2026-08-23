@@ -1,0 +1,6 @@
+﻿company,group,cik,report_end,revenue_usd_b,operating_cash_flow_usd_b,capex_usd_b,capex_to_operating_cash_flow_pct,inventory_usd_b,status,source
+Alphabet,cloud,1652044,2026-06-30,119.796,45.79,35.674,77.90784013976851,9.991,观察资本开支、现金流与AI变现是否匹配,SEC Company Facts
+Amazon,cloud,1018724,2026-06-30,200.606,45.387,54.208,119.43508052966708,38.184,观察资本开支、现金流与AI变现是否匹配,SEC Company Facts
+Microsoft,cloud,789019,2026-06-30,82.886,46.679,30.876,66.14537586494997,1.397,观察资本开支、现金流与AI变现是否匹配,SEC Company Facts
+Meta,cloud,1326801,2026-06-30,60.801,32.226,18.997,58.94929559982622,,观察资本开支、现金流与AI变现是否匹配,SEC Company Facts
+Micron,memory,723125,2026-05-28,41.456,8.411,5.389,64.07085958863394,8.567,观察库存、现金流与价格是否背离,SEC Company Facts
